@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTEUP Result App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            background-color: #eef2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .app-card {
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border-top: 6px solid #1a237e;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header img { height: 50px; margin-bottom: 8px; }
+        
+        .header h2 { 
+            color: #1a237e; 
+            font-size: 20px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            margin-bottom: 4px;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .header p { color: #555; font-size: 12px; margin-bottom: 12px; }
+
+        .dev-badge { 
+            display: inline-block; 
+            background: #e8eaf6; 
+            color: #1a237e; 
+            padding: 4px 12px; 
+            border-radius: 12px; 
+            font-size: 11px; 
+            font-weight: 600; 
+            border: 1px solid #c5cae9;
+        }
+
+        .form-area { padding: 25px; } 
+
+        .input-group { margin-bottom: 18px; }
+        .input-group label { display: block; margin-bottom: 8px; color: #333; font-weight: 600; font-size: 13px; }
+        
+        .input-group input { 
+            width: 100%; 
+            padding: 14px; 
+            border: 1px solid #ddd; 
+            border-radius: 10px; 
+            font-size: 15px; 
+            outline: none; 
+            transition: 0.3s; 
+            background: #f9f9f9;
+        }
+        
+        .input-group input:focus { 
+            border-color: #1a237e; 
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.1); 
+        }
+
+        /* Generate Button */
+        .btn-submit { 
+            width: 100%; 
+            padding: 16px; 
+            background: #1a237e; 
+            color: #fff; 
+            font-size: 15px; 
+            font-weight: 600; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-submit:active { transform: scale(0.98); }
+
+        /* --- NEW SUCCESS BOX (Hidden by default) --- */
+        .success-box {
+            display: none; /* Starting me chupa rahega */
+            margin-top: 20px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-msg {
+            background: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .success-icon {
+            font-size: 24px;
+            color: #2e7d32;
+        }
+
+        .success-text {
+            font-size: 13px;
+            color: #1b5e20;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        /* Green Open Button */
+        .btn-open {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00c853, #2e7d32); /* Green Gradient */
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-open:hover { transform: translateY(-2px); }
+
+
+        /* Navigation Styles (Same as before) */
+        .navigation-wrapper {
+            margin-top: 10px;
+            width: 100%;
+            background: linear-gradient(45deg, #1a237e, #2196f3);
+            display: flex;
+            justify-content: center;
+            padding-bottom: 5px;
+        }
+
+        .navigation {
+            position: relative;
+            width: 350px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navigation ul { display: flex; width: 350px; }
+        .navigation ul li { position: relative; width: 70px; height: 70px; list-style: none; z-index: 1; }
+        
+        .navigation ul li a {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .navigation ul li a .icon {
+            position: relative;
+            display: block;
+            line-height: 75px;
+            font-size: 1.5em;
+            text-align: center;
+            color: #fff;
+            transition: .5s;
+        }
+
+        .navigation ul li.active a .icon { transform: translateY(-32px); }
+        
+        .navigation ul li a .text {
+            position: absolute;
+            color: #fff;
+            font-weight: 400;
+            font-size: .75em;
+            letter-spacing: .05em;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: .5s;
+        }
+
+        .navigation ul li.active a .text { opacity: 1; transform: translateY(10px); }
+
+        .navigation ul li a .circle {
+            position: absolute;
+            display: block;
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border-radius: 50%;
+            border: 1.8px solid #fff;
+            transform: translateY(-37px) scale(0);
+        }
+
+        .navigation ul li.active a .circle {
+            transition: .5s;
+            transition-delay: .5s;
+            transform: translateY(-37px) scale(1);
+        }
+
+        .indicator {
+            position: absolute;
+            top: -50%;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, #1a237e, #2196f3);
+            border: 6px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: .5s;
+        }
+
+        .indicator::before {
+            content: ''; position: absolute; top: 50%; left: -22px; width: 20px; height: 20px;
+            background: transparent; border-top-right-radius: 20px; box-shadow: 1px -10px 0 #fff;
+        }
+        .indicator::after {
+            content: ''; position: absolute; top: 50%; right: -22px; width: 20px; height: 20px;
+            background: transparent; border-top-left-radius: 20px; box-shadow: -1px -10px 0 #fff;
+        }
+        
+        .navigation ul li:nth-child(1).active ~ .indicator { transform: translateX(calc(70px * 0)); }
+        .navigation ul li:nth-child(2).active ~ .indicator { transform: translateX(calc(70px * 1)); }
+        .navigation ul li:nth-child(3).active ~ .indicator { transform: translateX(calc(70px * 2)); }
+        .navigation ul li:nth-child(4).active ~ .indicator { transform: translateX(calc(70px * 3)); }
+        .navigation ul li:nth-child(5).active ~ .indicator { transform: translateX(calc(70px * 4)); }
+
+        .info-section { padding: 15px; text-align: center; }
+        .info-text { color: #666; font-size: 11px; margin-bottom: 5px; }
+        .copyright { color: #999; font-size: 10px; }
+
+        @media (max-width: 400px) {
+            .navigation { transform: scale(0.9); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-card">
+        
+        <div class="header">
+            
+            <h2>Board of Technical Education Result Link Generator</h2>
+            <p>Fast and Reliable Access to BTE Examination Result</p>
+            <div class="dev-badge">Developed by Tanishq Kushwaha</div>
+        </div>
+
+        <div class="form-area">
+            <form onsubmit="return false;">
+                <div class="input-group">
+                    <label>Enrollment Number</label>
+                    <input type="text" id="enrollment" placeholder="E.g., E253012356..." required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth</label>
+                    <input type="text" id="dob" placeholder="DD/MM/YYYY" required>
+                </div>
+                
+                <button class="btn-submit" onclick="generateResult()">
+                    Generate Result Link <i class="fas fa-link"></i>
+                </button>
+
+                <div class="success-box" id="successArea">
+                    <div class="success-msg">
+                        <i class="fas fa-check-square success-icon"></i>
+                        <span class="success-text">
+                            Your result link has been generated successfully! Click below to open your result.
+                        </span>
+                    </div>
+                    <a href="#" id="finalLinkBtn" target="_blank" class="btn-open">
+                        Open Result in New Tab <i class="fas fa-search"></i>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="info-section">
+            <p class="info-text">This tool helps you generate direct links to BTE exam results securely.</p>
+            <p class="copyright">&copy; 2026 BTE Result Generator. All rights reserved.</p>
+        </div>
+
+        <div class="navigation-wrapper">
+            <div class="navigation">
+                <ul>
+                    <li class="list active">
+                        <a href="#">
+                            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                            <span class="text">Home</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="https://www.instagram.com/tanishx.kushwaha/">
+                            <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                            <span class="text">Profile</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="/cdn-cgi/l/email-protection#6014010e091308110b15130817010801505920070d01090c4e030f0d">
+                            <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                            <span class="text">Mail</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="https://www.linkedin.com/in/tanishq-kushwaha-846b05375">
+                            <span class="icon"><ion-icon name="logo-linkedin"></ion-icon></span>
+                            <span class="text">LinkedIn</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="#" onclick="window.close()">
+                            <span class="icon"><ion-icon name="power-outline"></ion-icon></span>
+                            <span class="text">Exit</span>
+                            <span class="circle"></span>
+                        </a>
+                    </li>
+                    <div class="indicator"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+   <script>
+        // Navigation Logic
+        const list = document.querySelectorAll('.list');
+        function activeLink() {
+            list.forEach((item) => item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) => item.addEventListener('click', activeLink));
+
+        // --- GLOBAL VARIABLE ---
+        var finalGeneratedLink = "";
+
+        function generateResult() {
+            var enrollment = document.getElementById('enrollment').value.trim();
+            // Ab hum direct text value le rahe hain
+            var dobInput = document.getElementById('dob').value.trim(); 
+            
+            var btn = document.querySelector('.btn-submit');
+            var successBox = document.getElementById('successArea');
+            var finalLinkBtn = document.getElementById('finalLinkBtn');
+
+            // 1. Validation Check
+            if(enrollment === "" || dobInput === "") {
+                alert("⚠️ Enrollment Number aur DOB bharna zaroori hai!");
+                return;
+            }
+
+            // Check: DOB me '/' hai ya nahi?
+            if(!dobInput.includes("/")) {
+                alert("⚠️ Please enter Date in DD/MM/YYYY format (Example: 15/05/2002)");
+                return;
+            }
+
+            // 2. Button Animation
+            var originalText = btn.innerHTML;
+            btn.innerHTML = 'Connecting to Server... <i class="fas fa-spinner fa-spin"></i>';
+            btn.style.opacity = "0.7";
+
+            setTimeout(function() {
+                
+                try {
+                    // 3. Encoding Logic (Ab Date convert nahi karni padegi)
+                    var encodedEnrollment = btoa(enrollment);
+                    
+                    // Directly encode jo user ne type kiya
+                    // .replace logic zaroori hai "=" error ke liye
+                    var encodedDOB = btoa(dobInput).replace(/=/g, "%3D");
+
+                    // 4. Create Final Link
+                    var targetURL = `https://result.bteexam.com/Odd_Semester/main/result.aspx?id=${encodedEnrollment}&id2=${encodedDOB}`;
+
+                    // Set Link
+                    finalLinkBtn.href = targetURL;
+                    finalGeneratedLink = targetURL;
+
+                    // 5. UI Update
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = "1";
+                    btn.style.display = "none"; 
+                    successBox.style.display = "block"; 
+
+                } catch (err) {
+                    alert("Error: " + err.message);
+                    btn.innerHTML = originalText;
+                }
+
+            }, 1000); 
+        }
+    </script>
+
+</body>
+</html>
