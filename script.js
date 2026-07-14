@@ -12,7 +12,7 @@ function generateResult() {
 
 
     // 1. Validation Check
-    if (enrollment === "" || dobInput === "") {
+    if (!enrollment || !dobInput ) {
         alert("⚠️ Enrollment Number aur DOB bharna zaroori hai!");
         return;
     }
@@ -28,7 +28,7 @@ function generateResult() {
     btn.innerHTML = 'Connecting to Server... <i class="fas fa-spinner fa-spin"></i>';
     btn.style.opacity = "0.7";
 
-    setTimeout(function () {
+    setTimeout(() => {
 
         try {
             // 3. Encoding Logic
