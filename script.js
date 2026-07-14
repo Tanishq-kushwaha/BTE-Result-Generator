@@ -1,14 +1,15 @@
 
 // --- GLOBAL VARIABLE ---
 
+const btn = document.querySelector('.btn-submit');
+const successBox = document.getElementById('successArea');
+const finalLinkBtn = document.getElementById('finalLinkBtn');
+
 function generateResult() {
     const enrollment = document.getElementById('enrollment').value.trim();
     // Ab hum direct text value le rahe hain
     const dobInput = document.getElementById('dob').value.trim();
 
-    const btn = document.querySelector('.btn-submit');
-    const successBox = document.getElementById('successArea');
-    const finalLinkBtn = document.getElementById('finalLinkBtn');
 
     // 1. Validation Check
     if (enrollment === "" || dobInput === "") {
@@ -42,7 +43,6 @@ function generateResult() {
 
             // Set Link
             finalLinkBtn.href = targetURL;
-            finalGeneratedLink = targetURL;
 
             // 5. UI Update
             btn.innerHTML = originalText;
