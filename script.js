@@ -1,15 +1,14 @@
 
 // --- GLOBAL VARIABLE ---
-var finalGeneratedLink = "";
 
 function generateResult() {
-    var enrollment = document.getElementById('enrollment').value.trim();
+    const enrollment = document.getElementById('enrollment').value.trim();
     // Ab hum direct text value le rahe hain
-    var dobInput = document.getElementById('dob').value.trim();
+    const dobInput = document.getElementById('dob').value.trim();
 
-    var btn = document.querySelector('.btn-submit');
-    var successBox = document.getElementById('successArea');
-    var finalLinkBtn = document.getElementById('finalLinkBtn');
+    const btn = document.querySelector('.btn-submit');
+    const successBox = document.getElementById('successArea');
+    const finalLinkBtn = document.getElementById('finalLinkBtn');
 
     // 1. Validation Check
     if (enrollment === "" || dobInput === "") {
@@ -24,22 +23,22 @@ function generateResult() {
     }
 
     // 2. Button Animation
-    var originalText = btn.innerHTML;
+    const originalText = btn.innerHTML;
     btn.innerHTML = 'Connecting to Server... <i class="fas fa-spinner fa-spin"></i>';
     btn.style.opacity = "0.7";
 
     setTimeout(function () {
 
         try {
-            // 3. Encoding Logic (Ab Date convert nahi karni padegi)
-            var encodedEnrollment = btoa(enrollment);
+            // 3. Encoding Logic
+            const encodedEnrollment = btoa(enrollment);
 
             // Directly encode jo user ne type kiya
             // .replace logic zaroori hai "=" error ke liye
-            var encodedDOB = btoa(dobInput).replace(/=/g, "%3D");
+            const encodedDOB = btoa(dobInput).replace(/=/g, "%3D");
 
             // 4. Create Final Link
-            var targetURL = `https://result.bteexam.com/Odd_Semester/main/result.aspx?id=${encodedEnrollment}&id2=${encodedDOB}`;
+            const targetURL = `https://result.bteexam.com/Odd_Semester/main/result.aspx?id=${encodedEnrollment}&id2=${encodedDOB}`;
 
             // Set Link
             finalLinkBtn.href = targetURL;
@@ -58,3 +57,6 @@ function generateResult() {
 
     }, 1000);
 }
+
+document.querySelector(".btn-submit")
+.addEventListener("click", generateResult);
