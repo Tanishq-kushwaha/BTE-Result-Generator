@@ -58,5 +58,4 @@ function generateResult() {
     }, 1000);
 }
 
-document.querySelector(".btn-submit")
-.addEventListener("click", generateResult);
+btn.addEventListener("click", generateResult);
