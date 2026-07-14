@@ -191,17 +191,6 @@
             transform: translateY(-2px);
         }
 
-
-        /* Navigation Styles (Same as before) */
-        .navigation-wrapper {
-            margin-top: 10px;
-            width: 100%;
-            background: linear-gradient(45deg, #1a237e, #2196f3);
-            display: flex;
-            justify-content: center;
-            padding-bottom: 5px;
-        }
-
         .info-section {
             padding: 15px;
             text-align: center;
@@ -216,10 +205,4 @@
         .copyright {
             color: #999;
             font-size: 10px;
-        }
-
-        @media (max-width: 400px) {
-            .navigation {
-                transform: scale(0.9);
-            }
         }
