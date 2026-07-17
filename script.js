@@ -1,32 +1,32 @@
-const errorBox = document.getElementById("errorBox");
+// const errorBox = document.getElementById("errorBox");
 
-function showError(message) {
-    errorBox.style.display = "block";
-    errorBox.innerHTML = message;
-}
+// function showError(message) {
+//     errorBox.style.display = "block";
+//     errorBox.innerHTML = message;
+// }
 
-function hideError() {
-    errorBox.style.display = "none";
-}
+// function hideError() {
+//     errorBox.style.display = "none";
+// }
 
-function allowEnrollment(e) {
+// function allowEnrollment(e) {
 
-    const key = e.key;
+//     const key = e.key;
 
-    if (
-        /^[a-zA-Z0-9]$/.test(key) ||
-        key === "Backspace" ||
-        key === "Delete" ||
-        key === "ArrowLeft" ||
-        key === "ArrowRight" ||
-        key === "Tab"
-    ) {
-        return true;
-    }
+//     if (
+//         /^[a-zA-Z0-9]$/.test(key) ||
+//         key === "Backspace" ||
+//         key === "Delete" ||
+//         key === "ArrowLeft" ||
+//         key === "ArrowRight" ||
+//         key === "Tab"
+//     ) {
+//         return true;
+//     }
 
-    e.preventDefault();
-    return false;
-}
+//     e.preventDefault();
+//     return false;
+// }
 
 
 
@@ -37,7 +37,6 @@ const successBox = document.getElementById('successArea');
 const finalLinkBtn = document.getElementById('finalLinkBtn');
 
 function generateResult() {
-    hideError();
     const enrollment = document.getElementById('enrollment').value.trim();
     // Ab hum direct text value le rahe hain
     const dobInput = document.getElementById('dob').value.trim();
@@ -45,13 +44,13 @@ function generateResult() {
 
     // 1. Validation Check
     if (!enrollment || !dobInput) {
-        showError("Enrollment Number aur DOB bharna zaroori hai.");
+        alert("Enrollment Number aur DOB bharna zaroori hai.");
         return;
     }
 
     // Check: DOB me '/' hai ya nahi?
     if (!dobInput.includes("/")) {
-
+        alert("Wrong formate");
         return;
     }
 
@@ -93,14 +92,14 @@ function generateResult() {
 btn.addEventListener("click", generateResult);
 
 
-$(function () {
+// $(function () {
 
-    $('#dob').datepicker({
-        format: 'dd/mm/yyyy',
-        autoclose: true,
-        todayHighlight: true,
-        endDate: new Date(),
-        orientation: "bottom"
-    });
+//     $('#dob').datepicker({
+//         format: 'dd/mm/yyyy',
+//         autoclose: true,
+//         todayHighlight: true,
+//         endDate: new Date(),
+//         orientation: "bottom"
+//     });
 
-});
+// });

@@ -8,8 +8,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker.min.css">
 </head>
 
 <body>
@@ -27,21 +25,16 @@
             <form onsubmit="return false;">
                 <div class="input-group">
                     <label>Enrollment Number</label>
-                    <input type="text" id="enrollment" placeholder="E.g., E253012356..." maxlength="16"
-                        autocomplete="off" spellcheck="false" onkeypress="return allowEnrollment(event)" required>
+                    <input type="text" id="enrollment" placeholder="E.g., E253012356..." required>
                 </div>
                 <div class="input-group">
                     <label>Date of Birth</label>
-                    <input type="text" id="dob" class="date-picker" placeholder="DD/MM/YYYY" autocomplete="off" readonly
-                        required>
+                    <input type="text" id="dob" placeholder="DD/MM/YYYY" required>
                 </div>
 
                 <button class="btn-submit">
                     Generate Result Link <i class="fas fa-link"></i>
                 </button>
-
-                <div id="errorBox" class="error-box"></div>
-
 
                 <div class="success-box" id="successArea">
                     <div class="success-msg">
@@ -62,13 +55,8 @@
             <p class="info-text">This tool helps you generate direct links to BTE exam results securely.</p>
             <p class="copyright">&copy; 2026 BTE Result Generator. All rights reserved.</p>
         </div>
-        
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
-
-        <script src="script.js"></script>
 </body>
 
 </html>
