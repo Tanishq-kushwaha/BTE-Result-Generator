@@ -1,32 +1,35 @@
 const errorBox = document.getElementById("errorBox");
 
-function showError(message){
+function showError(message) {
     errorBox.style.display = "block";
     errorBox.innerHTML = message;
 }
 
-function hideError(){
+function hideError() {
     errorBox.style.display = "none";
 }
 
-function allowEnrollment(e){
+function allowEnrollment(e) {
 
     const key = e.key;
 
-    if(
+    if (
         /^[a-zA-Z0-9]$/.test(key) ||
-        key==="Backspace" ||
-        key==="Delete" ||
-        key==="ArrowLeft" ||
-        key==="ArrowRight" ||
-        key==="Tab"
-    ){
+        key === "Backspace" ||
+        key === "Delete" ||
+        key === "ArrowLeft" ||
+        key === "ArrowRight" ||
+        key === "Tab"
+    ) {
         return true;
     }
 
     e.preventDefault();
     return false;
 }
+
+
+
 // --- GLOBAL VARIABLE ---
 
 const btn = document.querySelector('.btn-submit');
@@ -34,20 +37,21 @@ const successBox = document.getElementById('successArea');
 const finalLinkBtn = document.getElementById('finalLinkBtn');
 
 function generateResult() {
+    hideError();
     const enrollment = document.getElementById('enrollment').value.trim();
     // Ab hum direct text value le rahe hain
     const dobInput = document.getElementById('dob').value.trim();
 
 
     // 1. Validation Check
-    if (!enrollment || !dobInput ) {
-        alert("⚠️ Enrollment Number aur DOB bharna zaroori hai!");
+    if (!enrollment || !dobInput) {
+        showError("Enrollment Number aur DOB bharna zaroori hai.");
         return;
     }
 
     // Check: DOB me '/' hai ya nahi?
     if (!dobInput.includes("/")) {
-        alert("⚠️ Please enter Date in DD/MM/YYYY format (Example: 15/05/2002)");
+
         return;
     }
 
