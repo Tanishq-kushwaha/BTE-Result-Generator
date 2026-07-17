@@ -8,6 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker.min.css">
 </head>
 
 <body>
@@ -30,13 +32,14 @@
                 </div>
                 <div class="input-group">
                     <label>Date of Birth</label>
-                    <input type="text" id="dob" placeholder="DD/MM/YYYY" required>
+                    <input type="text" id="dob" class="date-picker" placeholder="DD/MM/YYYY" autocomplete="off" readonly
+                        required>
                 </div>
 
                 <button class="btn-submit">
                     Generate Result Link <i class="fas fa-link"></i>
                 </button>
-                      
+
                 <div id="errorBox" class="error-box"></div>
 
 
@@ -59,8 +62,13 @@
             <p class="info-text">This tool helps you generate direct links to BTE exam results securely.</p>
             <p class="copyright">&copy; 2026 BTE Result Generator. All rights reserved.</p>
         </div>
-        <script src="script.js"></script>
+        
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
+
+        <script src="script.js"></script>
 </body>
 
 </html>

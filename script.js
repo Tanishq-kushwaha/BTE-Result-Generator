@@ -71,7 +71,7 @@ function generateResult() {
             const encodedDOB = btoa(dobInput).replace(/=/g, "%3D");
 
             // 4. Create Final Link
-            const targetURL = `https://result.bteexam.com/Odd_Semester/main/result.aspx?id=${encodedEnrollment}&id2=${encodedDOB}`;
+            const targetURL = `https://test.bteupexam.co.in/odd_Semester/main/result.aspx?id=${encodedEnrollment}&id2=${encodedDOB}`;
 
             // Set Link
             finalLinkBtn.href = targetURL;
@@ -91,3 +91,16 @@ function generateResult() {
 }
 
 btn.addEventListener("click", generateResult);
+
+
+$(function () {
+
+    $('#dob').datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: true,
+        todayHighlight: true,
+        endDate: new Date(),
+        orientation: "bottom"
+    });
+
+});
