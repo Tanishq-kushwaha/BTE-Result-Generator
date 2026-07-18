@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> b3352a1d502a9c2b45dfb6b7e1b19bcc65c0cc8c
 
 // --- GLOBAL VARIABLE ---
 
