@@ -1,34 +1,3 @@
-// const errorBox = document.getElementById("errorBox");
-
-// function showError(message) {
-//     errorBox.style.display = "block";
-//     errorBox.innerHTML = message;
-// }
-
-// function hideError() {
-//     errorBox.style.display = "none";
-// }
-
-// function allowEnrollment(e) {
-
-//     const key = e.key;
-
-//     if (
-//         /^[a-zA-Z0-9]$/.test(key) ||
-//         key === "Backspace" ||
-//         key === "Delete" ||
-//         key === "ArrowLeft" ||
-//         key === "ArrowRight" ||
-//         key === "Tab"
-//     ) {
-//         return true;
-//     }
-
-//     e.preventDefault();
-//     return false;
-// }
-
-
 
 // --- GLOBAL VARIABLE ---
 
@@ -91,15 +60,3 @@ function generateResult() {
 
 btn.addEventListener("click", generateResult);
 
-
-// $(function () {
-
-//     $('#dob').datepicker({
-//         format: 'dd/mm/yyyy',
-//         autoclose: true,
-//         todayHighlight: true,
-//         endDate: new Date(),
-//         orientation: "bottom"
-//     });
-
-// });
